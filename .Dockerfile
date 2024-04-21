@@ -1,28 +1,37 @@
-# Use Ubuntu as the base image
+# Base image
 FROM ubuntu:22.04
 
-# Install necessary packages
-RUN apt-get update && apt-get install -y curl sudo tar
+# Maintainer and metadata labels
+LABEL maintainer.name="Wenutu Shi" \
+      maintainer.email="wenutushi@gmail.com" \
+      version="1.0.0" \
+      description="VSCode remote tunnels Docker image deployable anywhere."
 
-# Add a non-root user with sudo privileges
-RUN useradd -m vscode -s /bin/bash \
-    && echo "vscode ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/vscode
+# Environment variables
+ENV MACHINE_NAME=vscode-remote
 
-# Use the non-root user
-USER vscode
+# Arguments for architecture and build
+ARG TARGETARCH
+ARG BUILD=stable
 
-# Set the working directory
+# Copying necessary scripts
+COPY src/* /usr/local/bin/
+
+# Installing necessary packages and cleaning up in one RUN to minimize image size
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    tzdata \
+    curl \
+    ca-certificates \
+    git \
+    build-essential && \
+    apt-get autoremove -y && \
+    apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/* && \
+    /usr/local/bin/download_vscode $TARGETARCH $BUILD
+
+# Setting the working directory
 WORKDIR /home/workspace
 
-
-# Download and install VSCode CLI
-RUN curl -fsSL "https://update.code.visualstudio.com/latest/cli-alpine-x64/stable" -o vscode-cli.tar.gz && \
-    tar -xzf vscode-cli.tar.gz -C /usr/local/bin && \
-    rm -f vscode-cli.tar.gz
-
-# Setup the VSCode tunnel
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-
-ENTRYPOINT ["/entrypoint.sh"]
+# Entry point
+ENTRYPOINT ["entrypoint"]

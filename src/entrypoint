@@ -1,0 +1,4 @@
+#!/bin/bash
+# Initializing and setting up VSCode Tunnel
+bash init || echo "No init file configured, skipping..."
+code tunnel --accept-server-license-terms --disable-telemetry --name "${MACHINE_NAME}"
