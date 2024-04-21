@@ -1,17 +1,24 @@
-# 使用带有 Node.js 的基础镜像
-FROM node:14
+# Use Ubuntu as the base image
+FROM ubuntu:22.04
 
-# 设置工作目录
-WORKDIR /usr/src/app
+# Install necessary packages
+RUN apt-get update && \
+    apt-get install -y curl git systemd && \
+    rm -rf /var/lib/apt/lists/*
 
-# 克隆 VSCode 源代码
-RUN git clone --depth 1 https://github.com/microsoft/vscode.git .
+# Download and install VSCode CLI
+ARG VSCODE_VERSION=latest
+RUN curl -fsSL "https://update.code.visualstudio.com/${VSCODE_VERSION}/linux-x64/stable" -o vscode.tar.gz && \
+    tar -xzf vscode.tar.gz -C /usr/local/bin && \
+    rm -f vscode.tar.gz
 
-# 安装依赖
-RUN yarn
+# Setup the VSCode tunnel
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# 构建 VSCode
-RUN yarn run compile
+# Use a non-root user to run the code
+RUN useradd -m vscode
+USER vscode
+WORKDIR /home/vscode
 
-# 启动 VSCode
-CMD ["yarn", "run", "web"]
+ENTRYPOINT ["/entrypoint.sh"]
