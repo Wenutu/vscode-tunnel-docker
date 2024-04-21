@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  vscode-tunnel:
+    build: .
+    container_name: vscode_tunnel
+    volumes:
+      - .:/workspace
+    ports:
+      - "3000:3000"  # Port for accessing the VSCode tunnel
+    restart: unless-stopped
