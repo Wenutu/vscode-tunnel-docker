@@ -16,8 +16,7 @@ WORKDIR /home/workspace
 
 
 # Download and install VSCode CLI
-ARG VSCODE_VERSION=latest
-RUN curl -fsSL "https://update.code.visualstudio.com/${VSCODE_VERSION}/cli-alpine-x64/stable" -o vscode-cli.tar.gz && \
+RUN curl -fsSL "https://update.code.visualstudio.com/latest/cli-alpine-x64/stable" -o vscode-cli.tar.gz && \
     tar -xzf vscode-cli.tar.gz -C /usr/local/bin && \
     rm -f vscode-cli.tar.gz
 
