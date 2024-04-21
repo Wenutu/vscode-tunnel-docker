@@ -2,7 +2,7 @@
 FROM ubuntu:22.04
 
 # Install necessary packages
-RUN apt-get update && apt-get install -y curl sudo
+RUN apt-get update && apt-get install -y curl sudo tar
 
 # Add a non-root user with sudo privileges
 RUN useradd -m vscode -s /bin/bash \

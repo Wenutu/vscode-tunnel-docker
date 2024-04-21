@@ -28,7 +28,6 @@ jobs:
         file: .Dockerfile
         tags: wenutu/vscode-cli-tunnel:latest
         push: true
-        build-args: VSCODE_VERSION=latest
 
     - name: Deploy (optional)
       run: echo "Deployment steps can be customized based on deployment needs"
