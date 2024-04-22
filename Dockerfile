@@ -17,7 +17,6 @@ ARG BUILD=stable
 # Copying necessary scripts
 COPY src/* /usr/local/bin/
 
-
 # Installing necessary packages and cleaning up in one RUN to minimize image size
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
