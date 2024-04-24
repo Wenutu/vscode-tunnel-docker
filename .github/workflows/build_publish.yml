@@ -42,7 +42,7 @@ jobs:
         id: vscode-version
         run: |
           # Fetch the latest tag from GitHub and format it for Docker tag
-          LATEST_TAG=$(gh release list -R microsoft/vscode --limit 1 --json tagName | jq -r '.[0].tagName')
+          LATEST_TAG=$(curl -s https://api.github.com/repos/microsoft/vscode/releases/latest | jq -r '.tag_name')
           echo "LATEST_TAG=${LATEST_TAG}" >> $GITHUB_ENV
           echo "::set-output name=LATEST_TAG::${LATEST_TAG}"
 
