@@ -7,6 +7,12 @@ LABEL maintainer.name="Wenutu Shi" \
       version="1.0.0" \
       description="VSCode remote tunnels Docker image deployable anywhere."
 
+RUN useradd -ms /bin/bash vscode && echo "vscode:vscode" | chpasswd
+RUN echo "vscode ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# Setting the working directory
+WORKDIR /home/vscode
+
 # Environment variables
 ENV MACHINE_NAME=vscode-remote
 
@@ -15,8 +21,10 @@ ARG TARGETARCH
 ARG BUILD=stable
 
 # Copying necessary scripts
-COPY src/* /usr/local/bin/
-
+COPY src/download_vscode /usr/local/bin/download_vscode
+COPY src/entrypoint /usr/local/bin/entrypoint
+USER root
+RUN chmod +x /usr/local/bin/download_vscode /usr/local/bin/entrypoint
 # Installing necessary packages and cleaning up in one RUN to minimize image size
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -30,8 +38,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     /usr/local/bin/download_vscode $TARGETARCH $BUILD
 
-# Setting the working directory
-WORKDIR /home/workspace
+USER vscode
 
-# Entry point
 ENTRYPOINT ["entrypoint"]
