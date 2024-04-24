@@ -1,5 +1,4 @@
-![VSCode Tunnel Docker Logo](./images/logo.png)
-# vscode-tunnel-docker
+<img src="./images/logo.png" alt="VSCode Tunnel Docker Logo" width="200" height="200"># vscode-tunnel-docker
 ## Language
 [English](https://github.com/Wenutu/vscode-tunnel-docker/blob/main/README.md) | [中文](https://github.com/Wenutu/vscode-tunnel-docker/blob/main/README_zh_CN.md)
 

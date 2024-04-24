@@ -1,7 +1,7 @@
-![VSCode Tunnel Docker Logo](./images/logo.png)
+<img src="./images/logo.png" alt="VSCode Tunnel Docker Logo" width="200" height="200">
 # vscode-tunnel-docker
-## Language
-[English](https://github.com/Wenutu/vscode-tunnel-docker/blob/main/README.md) | [中文](https://github.com/Wenutu/vscode-tunnel-docker/blob/main/README_zh_CN.md)
+## 语言
+[English](https://github.com/Wenutu/vscode-tunnel-docker/blob/main/README.md) | [中文](https://github.com/Wenutu/vscode-tunnel-docker/blob/main/README.zh_CN.md)
 
 ## 🌐 简介
 VSCode隧道Docker是一种基于Docker的解决方案，用于部署和管理通过安全隧道访问的VSCode服务器。它提供了一个可从任何地方访问的无缝开发环境。
