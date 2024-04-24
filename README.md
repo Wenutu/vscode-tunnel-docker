@@ -20,7 +20,7 @@ version: '3.8'
 services:
   vscode-tunnel:
     image: wenutu/vscode-tunnel-docker:latest
-    container_name: vscode_tunnel
+    container_name: vscode-tunnel
     environment:
       PROVIDER: github  # github, microsoft
       BUILD: stable     # stable, insider
