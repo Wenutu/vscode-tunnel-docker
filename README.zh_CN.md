@@ -13,6 +13,24 @@ VSCode隧道Docker是一种基于Docker的解决方案，用于部署和管理�
 ## 📦 安装
 ### 使用 Docker Compose
 1. 下载 docker-compose.yml
+```yml
+version: '3.8'
+
+services:
+  vscode-tunnel:
+    image: wenutu/vscode-tunnel-docker:latest
+    container_name: vscode_tunnel
+    environment:
+      PROVIDER: github  # github, microsoft
+      BUILD: stable     # stable, insider
+      MACHINE_NAME: vscode-tunnel-docker
+    volumes:
+      - ./workspace:/root/workspace
+      - ./vscode_data:/root/.vscode-server
+      - ./vscode_cli_data:/root/.vscode/cli
+    restart: unless-stopped
+
+```
 2. 构建并运行容器
 ```bash
 docker-compose up -d

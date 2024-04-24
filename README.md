@@ -14,6 +14,24 @@ VSCode Tunnel Docker is a Docker-based solution to deploy and manage a VSCode se
 ## 📦 Installation
 ### Using Docker Compose
 1. Download docker-compose.yml
+```yml
+version: '3.8'
+
+services:
+  vscode-tunnel:
+    image: wenutu/vscode-tunnel-docker:latest
+    container_name: vscode_tunnel
+    environment:
+      PROVIDER: github  # github, microsoft
+      BUILD: stable     # stable, insider
+      MACHINE_NAME: vscode-tunnel-docker
+    volumes:
+      - ./workspace:/root/workspace
+      - ./vscode_data:/root/.vscode-server
+      - ./vscode_cli_data:/root/.vscode/cli
+    restart: unless-stopped
+
+```
 2. Build and run the container:
 ```bash
 docker-compose up -d
