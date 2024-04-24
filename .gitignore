@@ -1,0 +1,6 @@
+.DS_Store
+.vscodes
+
+vscode_cli_data/
+vscode_data/
+workspace/

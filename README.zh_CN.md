@@ -3,24 +3,24 @@
 ## Language
 [English](https://github.com/Wenutu/vscode-tunnel-docker/blob/main/README.md) | [中文](https://github.com/Wenutu/vscode-tunnel-docker/blob/main/README_zh_CN.md)
 
-## 🌐 Description
-VSCode Tunnel Docker is a Docker-based solution to deploy and manage a VSCode server accessible through a secure tunnel. It provides a seamless development environment accessible from anywhere.
+## 🌐 简介
+VSCode隧道Docker是一种基于Docker的解决方案，用于部署和管理通过安全隧道访问的VSCode服务器。它提供了一个可从任何地方访问的无缝开发环境。
 
-## 📦 Installation
-### Using Docker Compose
-1. Download docker-compose.yml
-2. Build and run the container:
+## 📦 安装
+### 使用 Docker Compose
+1. 下载 docker-compose.yml
+2. 构建并运行容器
 ```bash
 docker-compose up -d
 ```
 
-### Build by yoursef
-1. Clone the repository:
+### 自行构建
+1. 克隆仓库
 ```bash
 git clone https://github.com/Wenutu/vscode-tunnel-docker.git
 cd vscode-tunnel-docker
 ```
-2. Create a docker-compose.override.yml with your specific configurations:
+2. 创建一个具有您特定配置的 docker-compose.override.yml
 ```yml
 version: '3.8'
 services:
@@ -28,19 +28,17 @@ services:
     environment:
       MACHINE_NAME: your-custom-machine-name
 ```
-3. Build and run the container:
-```bash
+3. 构建并运行容器
+```
 docker-compose up -d
 ```
 
-
-## 🔧 Usage
-1. After starting the container, check the logs to follow the setup process:
+## 🔧 使用方法
+1. 启动容器后，查看日志以跟踪设置过程
 ```bash
 docker logs vscode-tunnel
 ```
-
-Output will look like:
+输出将显示如下：
 ```less
 * Visual Studio Code Server
 *
@@ -53,8 +51,7 @@ To grant access to the server, please log into https://github.com/login/device a
 
 ```
 
-2. Log in at https://github.com/login/device and use code above
-3. Visit https://vscode.dev/tunnel/{MACHINE_NAME} to access your VSCode workspace.
-
+1. 登陆 https://github.com/login/device 用上面代码注册
+2. 访问 https://vscode.dev/tunnel/{MACHINE_NAME}
 
 

@@ -5,3 +5,6 @@ if [ "$PROVIDER" = "microsoft" ]; then
     code tunnel user login --provider microsoft
 fi
 code tunnel --accept-server-license-terms --disable-telemetry --name "${MACHINE_NAME}"
+
+# Start bash after running initialization commands
+exec bash

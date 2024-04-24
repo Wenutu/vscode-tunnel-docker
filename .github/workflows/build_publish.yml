@@ -16,6 +16,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform:
+          - arch: amd64
+          - arch: arm64
+          - arch: arm/v7
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -35,10 +41,21 @@ jobs:
       - name: Get latest VS Code version
         id: vscode-version
         run: |
-          LATEST_TAG=$(curl -s https://api.github.com/repos/microsoft/vscode/tags | jq -r '.[0].name')
+          # Fetch the latest tag from GitHub and format it for Docker tag
+          LATEST_TAG=$(curl -s https://api.github.com/repos/microsoft/vscode/tags | jq -r '.[0].name' | sed 's/^vsda-//')
           echo "LATEST_TAG=${LATEST_TAG}" >> $GITHUB_ENV
+          echo "::set-output name=LATEST_TAG::${LATEST_TAG}"
+
+      - name: Check if image exists
+        id: check-image
+        run: |
+          # Using Docker CLI to check if the tag already exists in your Docker repository
+          EXISTS=$(docker pull wenutu/vscode-tunnel-docker:$LATEST_TAG > /dev/null 2>&1 && echo "yes" || echo "no")
+          echo "IMAGE_EXISTS=${EXISTS}" >> $GITHUB_ENV
+          echo "::set-output name=exists::$EXISTS"
 
       - name: Build and push Docker image
+        if: steps.check-image.outputs.exists == 'no'
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -46,7 +63,7 @@ jobs:
           build-args: |
             TARGETARCH=${{ matrix.platform.arch }}
             BUILD=${{ steps.vscode-version.outputs.LATEST_TAG }}
-          tags: wenutu/vscode-remote-tunnels:latest, wenutu/vscode-remote-tunnels:${{ env.LATEST_TAG }}
+          tags: wenutu/vscode-tunnel-docker:latest, wenutu/vscode-tunnel-docker:${{ env.LATEST_TAG }}
           platforms: linux/amd64, linux/arm64, linux/arm/v7
           push: true
 
