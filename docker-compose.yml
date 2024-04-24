@@ -5,8 +5,8 @@ services:
     image: wenutu/vscode-tunnel-docker:latest
     container_name: vscode_tunnel
     environment:
-      PROVIDER: github
-      BUILD: stable # stable, insider
+      PROVIDER: github  # github, microsoft
+      BUILD: stable     # stable, insider
       MACHINE_NAME: vscode-tunnel-docker
     volumes:
       - ./workspace:/root/workspace

@@ -1,5 +1,9 @@
-<img src="./images/logo.png" alt="VSCode Tunnel Docker Logo" width="200" height="200">
-# vscode-tunnel-docker
+<p align="center">
+    <img src="./images/logo.png" alt="VSCode Tunnel Docker Logo" width="200" height="200">
+    <br>
+    <b>vscode-tunnel-docker</b>
+</p>
+
 ## 语言
 [English](https://github.com/Wenutu/vscode-tunnel-docker/blob/main/README.md) | [中文](https://github.com/Wenutu/vscode-tunnel-docker/blob/main/README.zh_CN.md)
 
@@ -32,6 +36,13 @@ services:
 ```
 docker-compose up -d
 ```
+### Docker Environment
+| Environment      | value             |
+| ------------- | ------------ |
+| PROVIDER      | github(microsoft)    |
+| BUILD         | stable(insider)      |
+| MACHINE_NAME  | vscode-tunnel-docker |
+
 
 ## 🔧 使用方法
 1. 启动容器后，查看日志以跟踪设置过程

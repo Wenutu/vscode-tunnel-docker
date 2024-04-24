@@ -1,6 +1,12 @@
-<img src="./images/logo.png" alt="VSCode Tunnel Docker Logo" width="200" height="200"># vscode-tunnel-docker
+<p align="center">
+    <img src="./images/logo.png" alt="VSCode Tunnel Docker Logo" width="200" height="200">
+    <br>
+    <b>vscode-tunnel-docker</b>
+</p>
+
 ## Language
-[English](https://github.com/Wenutu/vscode-tunnel-docker/blob/main/README.md) | [中文](https://github.com/Wenutu/vscode-tunnel-docker/blob/main/README_zh_CN.md)
+[English](https://github.com/Wenutu/vscode-tunnel-docker/blob/main/README.md) | [中文](https://github.com/Wenutu/vscode-tunnel-docker/blob/main/README.zh_CN.md)
+
 
 ## 🌐 Description
 VSCode Tunnel Docker is a Docker-based solution to deploy and manage a VSCode server accessible through a secure tunnel. It provides a seamless development environment accessible from anywhere.
@@ -31,6 +37,14 @@ services:
 ```bash
 docker-compose up -d
 ```
+
+### Docker Environment
+| Environment      | value             |
+| ------------- | ------------ |
+| PROVIDER      | github(microsoft)    |
+| BUILD         | stable(insider)      |
+| MACHINE_NAME  | vscode-tunnel-docker |
+
 
 
 ## 🔧 Usage
