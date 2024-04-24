@@ -62,7 +62,6 @@ jobs:
           file: ./Dockerfile
           build-args: |
             TARGETARCH=${{ matrix.platform.arch }}
-            BUILD=${{ steps.vscode-version.outputs.LATEST_TAG }}
           tags: wenutu/vscode-tunnel-docker:latest, wenutu/vscode-tunnel-docker:${{ env.LATEST_TAG }}
           platforms: linux/amd64, linux/arm64, linux/arm/v7
           push: true

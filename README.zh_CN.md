@@ -58,7 +58,6 @@ docker-compose up -d
 | Environment      | value             |
 | ------------- | ------------ |
 | PROVIDER      | github(microsoft)    |
-| BUILD         | stable(insider)      |
 | MACHINE_NAME  | vscode-tunnel-docker |
 
 

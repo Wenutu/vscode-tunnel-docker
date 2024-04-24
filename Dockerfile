@@ -15,7 +15,7 @@ ENV MACHINE_NAME=vscode-tunnel-docker
 
 # Arguments for architecture and build
 ARG TARGETARCH
-ARG BUILD=stable
+ARG BUILD=stable #TODO: Build insiders image
 
 # Copying necessary scripts
 COPY src/download_vscode /usr/local/bin/download_vscode
