@@ -44,7 +44,7 @@ jobs:
           # Fetch the latest tag from GitHub and format it for Docker tag
           LATEST_TAG=$(curl -s https://api.github.com/repos/microsoft/vscode/releases/latest | jq -r '.tag_name')
           echo "LATEST_TAG=${LATEST_TAG}" >> $GITHUB_ENV
-          echo "::set-output name=LATEST_TAG::${LATEST_TAG}"
+          # echo "::set-output name=LATEST_TAG::${LATEST_TAG}"
 
       - name: Check if image exists
         id: check-image
@@ -52,10 +52,11 @@ jobs:
           # Using Docker CLI to check if the tag already exists in your Docker repository
           EXISTS=$(docker pull wenutu/vscode-tunnel-docker:$LATEST_TAG > /dev/null 2>&1 && echo "yes" || echo "no")
           echo "IMAGE_EXISTS=${EXISTS}" >> $GITHUB_ENV
-          echo "::set-output name=exists::$EXISTS"
+          # echo "::set-output name=exists::$EXISTS"
 
       - name: Build and push Docker image
-        if: steps.check-image.outputs.exists == 'no'
+        #if: steps.check-image.outputs.exists == 'no'
+        if: env.IMAGE_EXISTS == 'no'
         uses: docker/build-push-action@v5
         with:
           context: .
