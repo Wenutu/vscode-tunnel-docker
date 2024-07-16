@@ -10,7 +10,7 @@ on:
   release:
     types: [published]
   schedule:
-    - cron: "0 3 1 * *"
+    - cron: "0 3 1 * 0"
   workflow_dispatch:
 
 jobs:
@@ -43,15 +43,15 @@ jobs:
         run: |
           # Fetch the latest tag from GitHub and format it for Docker tag
           LATEST_TAG=$(curl -s https://api.github.com/repos/microsoft/vscode/releases/latest | jq -r '.tag_name')
-          echo "LATEST_TAG=${LATEST_TAG}" >> $GITHUB_ENV
+          echo "LATEST_TAG=LATESTTAG">>{LATEST_TAG}" >> GITHUB_ENV
           # echo "::set-output name=LATEST_TAG::${LATEST_TAG}"
 
       - name: Check if image exists
         id: check-image
         run: |
           # Using Docker CLI to check if the tag already exists in your Docker repository
-          EXISTS=$(docker pull wenutu/vscode-tunnel-docker:$LATEST_TAG > /dev/null 2>&1 && echo "yes" || echo "no")
-          echo "IMAGE_EXISTS=${EXISTS}" >> $GITHUB_ENV
+          EXISTS=(dockerpullwenutu/vscode−tunnel−docker:(docker pull wenutu/vscode-tunnel-docker:LATEST_TAG > /dev/null 2>&1 && echo "yes" || echo "no")
+          echo "IMAGE_EXISTS=EXISTS">>{EXISTS}" >> GITHUB_ENV
           # echo "::set-output name=exists::$EXISTS"
 
       - name: Build and push Docker image
