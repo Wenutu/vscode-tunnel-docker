@@ -46,7 +46,7 @@ jobs:
         id: check-image
         run: |
           # Using Docker CLI to check if the tag already exists in your Docker repository
-          exists=$(docker pull wenutu/vscode-tunnel-docker:LATEST_TAG > /dev/null 2>&1 && echo "yes" || echo "no")
+          exists=$(docker pull wenutu/vscode-tunnel-docker:$LATEST_TAG > /dev/null 2>&1 && echo "yes" || echo "no")
           echo "IMAGE_EXISTS=$exists" >> $GITHUB_ENV
 
       - name: Build and push Docker image
