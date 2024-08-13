@@ -43,7 +43,7 @@ jobs:
         run: |
           # Fetch the latest tag from GitHub and format it for Docker tag
           LATEST_TAG=$(curl -s https://api.github.com/repos/microsoft/vscode/releases/latest | jq -r '.tag_name')
-          echo "LATEST_TAG=LATESTTAG">>{LATEST_TAG}" >> GITHUB_ENV
+          echo "LATEST_TAG=LATEST_TAG">>{LATEST_TAG}" >> GITHUB_ENV
           # echo "::set-output name=LATEST_TAG::${LATEST_TAG}"
 
       - name: Check if image exists
